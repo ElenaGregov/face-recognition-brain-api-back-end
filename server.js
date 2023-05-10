@@ -16,11 +16,11 @@ const db = knex({
     ssl : {
       rejectUnauthorized: false
     },
-    host : process.env.dpg-chaf6qik728r882qjim0-a,
+    host : process.env.DATABASE_HOST,
     port : 5432,
-    user : process.env.facerecdb_tqq5_user,
-    password : process.env.tCOBl72sORTIzAy2CPa9woA2DFyhASTW,
-    database : process.env.facerecdb_tqq5
+    user : process.env.DATABASE_USER,
+    password : process.env.DATABASE_PW,
+    database : process.env.DATABASE_DB
   }
 });
 
