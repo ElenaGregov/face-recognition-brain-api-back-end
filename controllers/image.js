@@ -1,15 +1,14 @@
-// controllers/image.js
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
-// Clarifai constants — you can hardcode or (better) store them in environment variables
+// Clarifai constants 
 const PAT = process.env.CLARIFAI_PAT || "f8fca67536e5494fac6d5f53829884ee";
 const USER_ID = "clarifai";
 const APP_ID = "main";
 const MODEL_ID = "face-detection";
 const MODEL_VERSION_ID = "6dc7e46bc9124c5c8824be4822abe105";
 
-// ------------------- API CALL HANDLER -------------------
+// API CALL HANDLER 
 const handleApiCall = async (req, res) => {
   const { input } = req.body; // frontend sends { input: "https://..." }
 
@@ -60,7 +59,7 @@ const handleApiCall = async (req, res) => {
   }
 };
 
-// ------------------- DATABASE HANDLER -------------------
+//  DATABASE HANDLER 
 const handleImage = (req, res, db) => {
   const { id } = req.body;
   db("users")
@@ -75,37 +74,3 @@ module.exports = {
   handleImage,
   handleApiCall,
 };
-
-
-
-
-/* const Clarifai = require('clarifai');
-
-const app = new Clarifai.App({
-  apiKey: 'b8d3001245ac41158ae89f99d4c524f5'
- });
-
- const handleApiCall = (req, res) => {
- app.models
-  .predict('face-detection', req.body.input)
-  .then(data => {
-    res.json(data);
-  })
-  .catch(err => res.status(400).json('unable to work with API'))
- }
-
-const handleImage = (req, res, db) => {
-    const { id } = req.body;
-    db('users').where('id', '=', id)
-    .increment('entries', 1)
-    .returning('entries')
-    .then(entries => {
-      res.json(entries[0].entries);
-    })
-    .catch(err => res.status(400).json('unable to get entries'))
-  }
-
-  module.exports = {
-    handleImage,
-    handleApiCall
-  } */
